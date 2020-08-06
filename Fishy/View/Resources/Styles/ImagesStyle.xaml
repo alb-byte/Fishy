@@ -1,0 +1,58 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Fishy.View.Resources.Styles">
+
+    <ImageBrush x:Key="BackGroundImBrush"
+ImageSource="/View/Resources/Files/background.jpg"
+/>
+    <ImageBrush x:Key="PartBackGroundImBrush"
+ImageSource="/View/Resources/Files/partbg.jpg"
+/>
+    <ImageBrush x:Key="BlueBackGroundImBrush"
+ImageSource="/View/Resources/Files/bluebackground.jpg"
+/>
+    <ImageBrush x:Key="DarkGreenBackGroundImBrush"
+ImageSource="/View/Resources/Files/darkgreenbackground.jpg"
+/>
+    <ImageBrush x:Key="FishBackGroundImBrush"
+ImageSource="/View/Resources/Files/LogoWhite.png"
+/>
+
+    <BitmapImage x:Key="Person" UriSource="/View/Resources/Files/person.jpg"/>
+    
+    <BitmapImage x:Key="WhiteLogo" UriSource="/View/Resources/Files/LogoWhite.png"/>
+    <BitmapImage x:Key="BlueLogo" UriSource="/View/Resources/Files/LogoBlue.png"/>
+
+
+
+    <BitmapImage x:Key="Magnifier" UriSource="/View/Resources/Files/search.png"/>
+    <BitmapImage x:Key="BlueMagnifier" UriSource="/View/Resources/Files/bluesearch.png"/>
+
+    <BitmapImage x:Key="Message" UriSource="/View/Resources/Files/message.png"/>
+    <BitmapImage x:Key="BlueMessage" UriSource="/View/Resources/Files/bluemessage.png"/>
+
+    <BitmapImage x:Key="Shield" UriSource="/View/Resources/Files/def.png"/>
+    <BitmapImage x:Key="BlueShield" UriSource="/View/Resources/Files/bluedef.png"/>
+
+    <BitmapImage x:Key="Gallery" UriSource="/View/Resources/Files/foto.png"/>
+    <BitmapImage x:Key="BlueGallery" UriSource="/View/Resources/Files/bluefoto.png"/>
+
+    <BitmapImage x:Key="News" UriSource="/View/Resources/Files/news.png"/>
+    <BitmapImage x:Key="BlueNews" UriSource="/View/Resources/Files/bluenews.png"/>
+
+    <BitmapImage x:Key="Triangle" UriSource="/View/Resources/Files/three.png"/>
+    <BitmapImage x:Key="BlueTriangle" UriSource="/View/Resources/Files/bluethree.png"/>
+    
+    <BitmapImage x:Key="Exit" UriSource="/View/Resources/Files/exit.png"/>
+    <BitmapImage x:Key="BlueExit" UriSource="/View/Resources/Files/blueexit.png"/>
+
+
+    <BitmapImage x:Key="Fish" UriSource="/View/Resources/Files/fish.png"/>
+    <BitmapImage x:Key="BlueFish" UriSource="/View/Resources/Files/bluefish.png"/>
+
+    <BitmapImage x:Key="Friends" UriSource="/View/Resources/Files/friends.png"/>
+    <BitmapImage x:Key="BlueFriends" UriSource="/View/Resources/Files/bluefriends.png"/>
+
+
+
+</ResourceDictionary>

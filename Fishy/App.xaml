@@ -1,0 +1,17 @@
+﻿<Application x:Class="Fishy.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Fishy"
+             StartupUri="View/StartWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="View\Resources\Styles\MainWindowStyle.xaml"/>
+                <ResourceDictionary Source="View\Resources\Styles\StartWindowStyle.xaml" />
+                <ResourceDictionary Source="View\Resources\Styles\ImagesStyle.xaml"/>
+                <ResourceDictionary Source="View\Resources\UIControls\NavigationPanel\CloseButton.xaml"/>
+                <ResourceDictionary Source="View\Resources\UIControls\NavigationPanel\CollapseButton.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
