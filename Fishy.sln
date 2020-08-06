@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fishy", "Fishy\Fishy.csproj", "{97E629F5-2378-42E1-99D5-C0789D66072A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{7949E048-D876-44F4-887B-D9D52B96C14C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fishy-Model", "Fishy-Model\Fishy-Model.csproj", "{BBEB8BE9-F416-424C-A9D6-C24033B08C64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{97E629F5-2378-42E1-99D5-C0789D66072A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97E629F5-2378-42E1-99D5-C0789D66072A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97E629F5-2378-42E1-99D5-C0789D66072A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7949E048-D876-44F4-887B-D9D52B96C14C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7949E048-D876-44F4-887B-D9D52B96C14C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7949E048-D876-44F4-887B-D9D52B96C14C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7949E048-D876-44F4-887B-D9D52B96C14C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBEB8BE9-F416-424C-A9D6-C24033B08C64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBEB8BE9-F416-424C-A9D6-C24033B08C64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBEB8BE9-F416-424C-A9D6-C24033B08C64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBEB8BE9-F416-424C-A9D6-C24033B08C64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -14,9 +14,9 @@ namespace Fishy.ViewModel
 {
     public class BaseVM : INotifyPropertyChanged
     {
-        //protected int port = int.Parse(ConfigurationManager.AppSettings["port"]);
-        //protected int chatport = int.Parse(ConfigurationManager.AppSettings["chatport"]);
-        //protected string server = ConfigurationManager.AppSettings["ip"];
+        protected int port = int.Parse(ConfigurationManager.AppSettings["port"]);
+        protected int chatport = int.Parse(ConfigurationManager.AppSettings["chatport"]);
+        protected string server = ConfigurationManager.AppSettings["ip"];
 
         //protected T GetResponse<T>(TcpClient client)
         //{
