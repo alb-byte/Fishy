@@ -5,6 +5,11 @@ namespace Server.Data.Repositories
 {
     public class NewsRepository : IGenericRepository<NEWS>
     {
+        private FishyContext db;
+        public NewsRepository(FishyContext context)
+        {
+            db = context;
+        }
         public void Create(NEWS entity)
         {
             throw new System.NotImplementedException();

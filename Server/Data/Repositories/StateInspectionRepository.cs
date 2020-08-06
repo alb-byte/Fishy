@@ -7,6 +7,11 @@ namespace Server.Data.Repositories
 {
     public class StateInspectionRepository : IGenericRepository<STATE_INSPECTION>
     {
+        private FishyContext db;
+        public StateInspectionRepository(FishyContext context)
+        {
+            db = context;
+        }
         public void Create(STATE_INSPECTION entity)
         {
             throw new NotImplementedException();

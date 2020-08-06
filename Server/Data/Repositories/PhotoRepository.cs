@@ -6,6 +6,11 @@ namespace Server.Data.Repositories
 {
     public class PhotoRepository : IGenericRepository<PHOTO>
     {
+        private FishyContext db;
+        public PhotoRepository(FishyContext context)
+        {
+            db = context;
+        }
         public void Create(PHOTO entity)
         {
             throw new NotImplementedException();

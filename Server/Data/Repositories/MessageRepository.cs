@@ -5,6 +5,11 @@ namespace Server.Data.Repositories
 {
     public class MessageRepository : IGenericRepository<MESSAGE>
     {
+        private FishyContext db;
+        public MessageRepository(FishyContext context)
+        {
+            db = context;
+        }
         public void Create(MESSAGE entity)
         {
             throw new System.NotImplementedException();

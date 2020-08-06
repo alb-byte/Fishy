@@ -53,17 +53,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\FishyContext.cs" />
+    <Compile Include="Data\GenericUnitOfWork.cs" />
     <Compile Include="Data\IGenericRepository.cs" />
     <Compile Include="Data\Repositories\AlbumRepository.cs" />
     <Compile Include="Data\Repositories\CommentRepository.cs" />
     <Compile Include="Data\Repositories\DialogRepository.cs" />
     <Compile Include="Data\Repositories\FishRepository.cs" />
     <Compile Include="Data\Repositories\FriendRepository.cs" />
+    <Compile Include="Data\Repositories\GenericRepository.cs" />
     <Compile Include="Data\Repositories\MessageRepository.cs" />
     <Compile Include="Data\Repositories\NewsRepository.cs" />
     <Compile Include="Data\Repositories\PhotoRepository.cs" />
     <Compile Include="Data\Repositories\StateInspectionRepository.cs" />
     <Compile Include="Data\Repositories\UserRepository.cs" />
+    <Compile Include="Data\UnitOfWork.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

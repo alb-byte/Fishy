@@ -5,6 +5,11 @@ namespace Server.Data.Repositories
 {
     public class UserRepository : IGenericRepository<USER>
     {
+        private FishyContext db;
+        public UserRepository(FishyContext context)
+        {
+            db = context;
+        }
         public void Create(USER entity)
         {
             throw new System.NotImplementedException();

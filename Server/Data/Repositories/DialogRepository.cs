@@ -1,33 +1,40 @@
 ﻿using Fishy_Model.Models;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 
 namespace Server.Data.Repositories
 {
     public class DialogRepository : IGenericRepository<DIALOG>
     {
+        private FishyContext db;
+        public DialogRepository(FishyContext context)
+        {
+            db = context;
+        }
         public void Create(DIALOG entity)
         {
-            throw new System.NotImplementedException();
+            db.DIALOGS.Add(entity);
         }
 
         public DIALOG FindById(int id)
         {
-            throw new System.NotImplementedException();
+            return db.DIALOGS.Find(id);
         }
 
         public IEnumerable<DIALOG> Get()
         {
-            throw new System.NotImplementedException();
+            return db.DIALOGS.ToList();
         }
 
         public void Remove(DIALOG entity)
         {
-            throw new System.NotImplementedException();
+            db.DIALOGS.Remove(entity);
         }
 
         public void Update(DIALOG entity)
         {
-            throw new System.NotImplementedException();
+            db.Entry(entity).State = EntityState.Modified;
         }
     }
 }

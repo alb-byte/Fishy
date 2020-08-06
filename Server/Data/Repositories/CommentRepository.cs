@@ -1,33 +1,40 @@
 ﻿using Fishy_Model.Models;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 
 namespace Server.Data.Repositories
 {
     public class CommentRepository : IGenericRepository<COMMENT>
     {
+        private FishyContext db;
+        public CommentRepository(FishyContext context)
+        {
+            db = context;
+        }
         public void Create(COMMENT entity)
         {
-            throw new System.NotImplementedException();
+            db.COMMENTS.Add(entity);
         }
 
         public COMMENT FindById(int id)
         {
-            throw new System.NotImplementedException();
+            return db.COMMENTS.Find(id);
         }
 
         public IEnumerable<COMMENT> Get()
         {
-            throw new System.NotImplementedException();
+            return db.COMMENTS.ToList();
         }
 
         public void Remove(COMMENT entity)
         {
-            throw new System.NotImplementedException();
+            db.COMMENTS.Remove(entity);
         }
 
         public void Update(COMMENT entity)
         {
-            throw new System.NotImplementedException();
+            db.Entry(entity).State = EntityState.Modified;
         }
     }
 }
