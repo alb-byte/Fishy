@@ -1,10 +1,17 @@
-using System.Data.Entity;
-
 namespace Fishy_Model.Models
 {
+    using System;
+    using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
+
     public partial class FishyContext : DbContext
     {
-        public FishyContext(): base("name=FishyContext"){ }
+        public FishyContext()
+            : base("name=FishyContext")
+        {
+        }
+
         public virtual DbSet<ALBUM> ALBUMS { get; set; }
         public virtual DbSet<COMMENT> COMMENTS { get; set; }
         public virtual DbSet<DIALOG> DIALOGS { get; set; }
@@ -66,6 +73,11 @@ namespace Fishy_Model.Models
             modelBuilder.Entity<USER>()
                 .HasMany(e => e.MESSAGES)
                 .WithOptional(e => e.USER)
+                .HasForeignKey(e => e.HANDLER);
+
+            modelBuilder.Entity<USER>()
+                .HasMany(e => e.MESSAGES1)
+                .WithOptional(e => e.USER1)
                 .HasForeignKey(e => e.SENDER);
         }
     }

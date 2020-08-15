@@ -1,5 +1,4 @@
-﻿using Fishy_Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +8,24 @@ namespace Server
 {
     public class Program
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
-            FishyContext context = new FishyContext();
-            FRIEND f = new FRIEND();
-            f.ID1 = 1;
-            f.ID2 = 2;
-            context.FRIENDS.Add(f);
-            context.SaveChanges();
+            try
+            {
+                Server server = new Server();
+                server.Listen();
 
+            }
+            catch (Exception e)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(e.Message);
+                Console.ResetColor();
+            }
+            finally
+            {
+
+            }
         }
     }
 }

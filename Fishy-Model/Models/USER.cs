@@ -1,9 +1,11 @@
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace Fishy_Model.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
     [Table("USERS")]
     public partial class USER
     {
@@ -17,6 +19,7 @@ namespace Fishy_Model.Models
             FRIENDS = new HashSet<FRIEND>();
             FRIENDS1 = new HashSet<FRIEND>();
             MESSAGES = new HashSet<MESSAGE>();
+            MESSAGES1 = new HashSet<MESSAGE>();
         }
 
         public int ID { get; set; }
@@ -70,5 +73,8 @@ namespace Fishy_Model.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MESSAGE> MESSAGES { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MESSAGE> MESSAGES1 { get; set; }
     }
 }
