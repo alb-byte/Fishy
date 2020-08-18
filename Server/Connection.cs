@@ -14,15 +14,19 @@ namespace Server
     {
         protected internal int Id { get; private set; }
         protected internal NetworkStream Stream { get; private set; }
+        private State state;
         private TcpClient client;
         private Server server;
         private BinaryFormatter BinaryFormatter;
+        private RequestHandler requestHandler;
 
         public Connection(TcpClient tcpClient, Server serverObject)
         {
             client = tcpClient;
             server = serverObject;
+            requestHandler = new RequestHandler();
             BinaryFormatter = new BinaryFormatter();
+            state = State.NOTAUTHORIZED;
             serverObject.AddConnection(this);
         }
 
@@ -31,19 +35,20 @@ namespace Server
             try
             {
                 Stream = client.GetStream();
-                // получаем id пользователя которое и будет id подключения
-                this.Id = ((USER)BinaryFormatter.Deserialize(Stream)).ID;
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine(Id + " подключился");
-                Console.ResetColor();
-                Request request = null;
+                Response response = null;
                 while (true)
                 {
                     try
                     {
-                        request = (Request)BinaryFormatter.Deserialize(Stream);
-
-                        server.SendResponse();
+                        Request request = (Request)BinaryFormatter.Deserialize(Stream);
+                        response = requestHandler.Processing(request);
+                        if(request.Type == Request.RequestType.GetUser && state == State.NOTAUTHORIZED && 
+                            response.State != Response.ResponseState.IsNull )
+                        {
+                            state = State.AUTHORIZED;
+                            this.Id = ((USER)response.Body).ID;
+                        }
+                        server.SendResponse(response,this);
                     }
                     catch
                     {
@@ -71,6 +76,12 @@ namespace Server
                 Stream.Close();
             if (client != null)
                 client.Close();
+        }
+
+        private enum State
+        {
+            AUTHORIZED,
+            NOTAUTHORIZED
         }
     }
 }

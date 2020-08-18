@@ -1,0 +1,19 @@
+﻿<Page x:Class="FISHY.View.Pages.MainWindowPages.StandardPages.FriendsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:standartusercontrols="clr-namespace:FISHY.View.Resources.UserControls.StandartUserControls"
+      mc:Ignorable="d" 
+      x:Name="FPage">
+    <ListBox x:Name="MainListBox"
+            DockPanel.Dock="Right" 
+            ItemsSource="{Binding Collections.Friends}"
+            ScrollViewer.ScrollChanged="ListView_ScrollChanged">
+        <ListBox.ItemTemplate>
+            <DataTemplate x:Name="ListBoxConentTemplate">
+                <standartusercontrols:Friend/>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+</Page>

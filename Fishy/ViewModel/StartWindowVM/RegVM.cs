@@ -7,12 +7,12 @@ namespace Fishy.ViewModel.StartWindowVM
     public class RegVM
     {
         //private User user;
-        private IContainerVM container;
+        private StartVM mainVM;
         private ICommand registrationCommand;
-        public RegVM(IContainerVM container)
+        public RegVM(StartVM main)
         {
-            this.container = container;
-            OpenAuthPage = new OpenAuthPageCommand(container);
+            this.mainVM = main;
+            OpenAuthPage = mainVM.OpenAuthPage;
             //user = new User();
         }
         public ICommand OpenAuthPage { get; }

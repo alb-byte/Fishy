@@ -21,9 +21,13 @@ namespace Server.Data.Repositories
             return dbSet.AsNoTracking().ToList();
         }
 
-        public IEnumerable<TEntity> Get(Func<TEntity, bool> predicate)
+        public IEnumerable<TEntity> GetEntities(Func<TEntity, bool> predicate)
         {
             return dbSet.AsNoTracking().Where(predicate).ToList();
+        }
+        public TEntity GetEntity(Func<TEntity, bool> predicate)
+        {
+            return dbSet.AsNoTracking().Where(predicate).FirstOrDefault();
         }
         public TEntity FindById(int id)
         {

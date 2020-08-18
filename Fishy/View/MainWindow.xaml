@@ -3,22 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Fishy.View"
+        xmlns:standartusercontrols="clr-namespace:FISHY.View.Resources.UserControls.StandartUserControls"
         mc:Ignorable="d"
        >
 
     <DockPanel x:Name="MainDockPanel">
-
+        <standartusercontrols:Header DockPanel.Dock="Top"/>
         <Frame x:Name="AccountFrame"
                NavigationUIVisibility="Hidden" 
-               Content="{Binding CurrentAccountPage}"
+               Content="{Binding LeftPage}"
                DockPanel.Dock="Left"
                Width="550"
                />
 
         <Frame x:Name="InfoFrame"
                NavigationUIVisibility="Hidden" 
-               Content="{Binding CurrentInfoPage}"
+               Content="{Binding RightPage}"
                DockPanel.Dock="Right"
                />
     </DockPanel>

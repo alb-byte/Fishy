@@ -1,0 +1,54 @@
+﻿<Page x:Class="FISHY.View.Pages.MainWindowPages.StandardPages.AlbumsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:standardusercontrols="clr-namespace:FISHY.View.Resources.UserControls.StandardUserControls"
+      mc:Ignorable="d"
+      x:Name="MainPage">
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </Page.Resources>
+
+    <StackPanel Orientation="Vertical"
+                Width="{Binding ElementName=MainPage, Path=Width}"
+                Height="{Binding ElementName=MainPage, Path=Height}"
+                DockPanel.Dock="Right">
+
+        <ListBox x:Name="MainListBox"
+                 Width="{Binding ElementName=MainPage, Path=Width}"
+                 Background="LightGray"
+                 HorizontalAlignment="Center"
+                 ItemsSource="{Binding Collections.Albums}" 
+                 ScrollViewer.ScrollChanged="ListView_ScrollChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate x:Name="ListBoxConentTemplate">
+                    <standardusercontrols:Album Margin="-5"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Canvas x:Name="EntryDialogCanvas"
+                Background="DarkGray"
+                Width="700"
+                Height="100"
+                Visibility="{Binding  AddAlbumVisible, Converter={StaticResource BoolToVisibilityConverter} }">
+            <Label
+                Height="60"
+                Style="{DynamicResource AddItemLabelStyle}"
+                Content="Добавить альбом"
+                Width="400"
+                Canvas.Top="20"
+                Canvas.Left="50"/>
+            <Button
+                Height="50"
+                Style="{DynamicResource AddItemButtonStyle}"
+                Content="+"
+                Canvas.Top="25"
+                Canvas.Right="50"
+                Background="DarkGray"
+                Command="{Binding AddAlbumCommand}"/>
+        </Canvas>
+        
+    </StackPanel>
+</Page>

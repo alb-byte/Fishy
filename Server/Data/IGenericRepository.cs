@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Server.Data
 {
@@ -7,6 +8,8 @@ namespace Server.Data
         void Create(TEntity entity);
         TEntity FindById(int id);
         IEnumerable<TEntity> Get();
+        IEnumerable<TEntity> GetEntities(Func<TEntity, bool> predicate);
+        TEntity GetEntity(Func<TEntity, bool> predicate);
         void Update(TEntity entity);
         void Remove(TEntity entity);
     }

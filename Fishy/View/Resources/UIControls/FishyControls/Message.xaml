@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="FISHY.View.Resources.UserControls.StandartUserControls.Message"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FISHY.View.Resources.UserControls.StandartUserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="700"
+             >
+    <Canvas Width="700" Height="200"
+             Background="DarkGray">
+        <TextBlock  x:Name="MainTextBlock"
+                    Style="{DynamicResource MessageTextBlockStyle}"
+                    Text="{Binding Text}"
+                    Width="500"
+                    MaxHeight="200"/>
+
+        <Label x:Name="MessageTimeCreationLabel"
+               Style="{DynamicResource DialogLabelStyle}"
+               Content="{Binding Time}"
+               Canvas.Left="500"
+               FontSize="20"
+               Width="200"/>
+    </Canvas>
+</UserControl>

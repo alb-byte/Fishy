@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="FISHY.View.Resources.UserControls.StandardUserControls.Photo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FISHY.View.Resources.UserControls.StandardUserControls"
+             mc:Ignorable="d" 
+            >
+    <UserControl.Resources>
+            <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </UserControl.Resources>
+
+
+    <StackPanel x:Name="MainStackPanel"
+                Orientation="Vertical">
+        
+        <Image  x:Name="mainImg"
+                Source="{Binding Image}"
+                Style="{DynamicResource PhotoStyle}"
+                Height="200"
+                Width="200"
+                Tag="{Binding Id}"/>
+
+        <Canvas x:Name="MainCanvas">
+            <Button x:Name="showCommentsButton"
+                    Content="Показать комментарии"
+                    Click="BtnClick"/>
+            <ListBox x:Name="MainListBox"
+                    Background="LightGray"
+                    Canvas.Left="0"
+                    ItemsSource="{Binding Comments}"
+                    ScrollViewer.ScrollChanged="ListView_ScrollChanged"
+                >
+                <ListBox.ItemTemplate>
+                    <DataTemplate x:Name="ListBoxConentTemplate">
+                        <local:Comment/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Canvas>
+
+        <StackPanel  x:Name="entryCommentPanel"
+                     Orientation="Horizontal"
+                     Background="Transparent"
+                     Height="60"
+                     Visibility="Hidden"
+                     HorizontalAlignment="Center">
+            <TextBox x:Name="MainTextBox"
+                     Style="{DynamicResource EntryMessageTextBoxStyle}" 
+                     Validation.ErrorTemplate="{StaticResource validationFailed}">
+                <TextBox.Text>
+                    <Binding ElementName="MainListBox" Path="DataContext.Comment.Text" Mode="TwoWay"
+                             ValidatesOnDataErrors="True" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Button x:Name="SendButton"
+                    Content="Отправить"
+                    Command="{Binding ElementName=MainListBox, Path=DataContext.AddCommentCommand}"
+                    Style="{DynamicResource SendMessageButtonStyle}"/>
+        </StackPanel>
+        
+    </StackPanel>
+
+</UserControl>

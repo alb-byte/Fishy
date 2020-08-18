@@ -6,12 +6,11 @@ namespace Fishy.ViewModel.StartWindowVM
 {
     public class AuthVM
     {
-        private IContainerVM container;
-        private ICommand registrationCommand;
-        public AuthVM(IContainerVM container)
+        private StartVM mainVM;
+        public AuthVM(StartVM main)
         {
-            this.container = container;
-            OpenRegPage = new OpenRegPageCommand(container);
+            this.mainVM = main;
+            OpenRegPage = mainVM.OpenRegPage;
         }
         public ICommand OpenRegPage { get; }
 

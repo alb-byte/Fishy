@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="FISHY.View.Resources.UserControls.StandartUserControls.Dialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:startwindowpages1="clr-namespace:Fishy.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="700">
+    <UserControl.Resources>
+            <startwindowpages1:MultiConverter2 x:Key="MultiValueConverter"/>
+    </UserControl.Resources>
+    <Canvas Width="700" Height="100" Background="Gray">
+
+        <Button x:Name="userBtn"
+                Width="300"
+                Canvas.Left="120"
+                Style="{DynamicResource DialogButtonStyle}"
+                Content="{Binding UserName}"
+                Command="{Binding ElementName=DPage, Path=DataContext.GetUserCommand}"
+                CommandParameter="{Binding ElementName=userBtn,Path=Tag}"
+                Tag="{Binding UserId}"/>
+
+        <Label 
+            Style="{DynamicResource DialogLabelStyle}"
+            Width="100"
+            Canvas.Right="20"
+            Content="{Binding Time}"/>
+
+        <Button x:Name="messBtn"
+                Width="500"
+                Canvas.Left="120"
+                Canvas.Top="50"
+                Style="{DynamicResource DialogButtonStyle}"
+                Content="{Binding LastMessage}"
+                Tag="{Binding DialogId}"
+                Command="{Binding ElementName=DPage, Path=DataContext.GetMessagesCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource MultiValueConverter}">
+                    <Binding  ElementName="messBtn"/>
+                    <Binding  ElementName="userBtn"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+    </Canvas>
+</UserControl>
+<!--CommandParameter="{Binding ElementName=messBtn,Path=Tag}"-->

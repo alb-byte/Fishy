@@ -12,10 +12,10 @@ namespace Fishy.View.Pages.StartWindowPages
 {
     public partial class AuthPage : Page
     {
-        public AuthPage(IContainerVM vm)
+        public AuthPage(StartVM vm)
         {
             InitializeComponent();
-            DataContext = new AuthVM(vm);
+            DataContext = vm;
         }
     }
 }

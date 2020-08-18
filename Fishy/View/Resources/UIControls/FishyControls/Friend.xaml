@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="FISHY.View.Resources.UserControls.StandartUserControls.Friend"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="700">
+    
+    <Canvas Width="700" Height="100" Background="Gray">
+        <Image  Source="{Binding Avatar}"
+                Height="100"
+                Width="100" />
+        <Button x:Name="FriendButton"
+                Width="300"
+                Canvas.Left="120"
+                Style="{DynamicResource DialogButtonStyle}"
+                Content="{Binding FIRSTNAME}"
+                Tag="{Binding ID}"
+                Command="{Binding ElementName=FPage, Path=DataContext.GetUserCommand}"
+                CommandParameter="{Binding ElementName=FriendButton, Path=Tag}" />
+
+        <Button  
+            Width="500"
+            Canvas.Left="120"
+            Canvas.Top="50"
+            Style="{DynamicResource DialogButtonStyle}"
+            Command="{Binding ElementName=FPage, Path=DataContext.WriteCommand}"
+            CommandParameter="{Binding ElementName=FriendButton, Path=Tag}"
+            Content="Написать сообщение"/>
+    </Canvas>
+</UserControl>

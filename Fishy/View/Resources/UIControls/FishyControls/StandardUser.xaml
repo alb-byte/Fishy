@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="FISHY.View.Resources.UserControls.StandardUserControls.StandardUser"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="700">
+    <Canvas Width="700" Height="100" Background="Gray">
+        <Image  Source="{Binding Avatar}"
+                Height="100"
+                Width="100"/>
+        <Button x:Name="UserButton"
+                Width="300"
+                Canvas.Left="120"
+                Canvas.Top="40"
+                Style="{DynamicResource DialogButtonStyle}"
+                Content="{Binding FullName}"
+                Tag="{Binding Id}"
+                Command="{Binding ElementName=SPage, Path=DataContext.GetUserCommand}"
+                CommandParameter="{Binding ElementName=UserButton, Path=Tag}"/>
+    </Canvas>
+</UserControl>

@@ -1,0 +1,232 @@
+﻿<UserControl x:Class="FISHY.View.Resources.UserControls.StandartUserControls.Header"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:navigationpanel1="clr-namespace:Fishy.View.Resources.UIControls.NavigationPanel"
+             mc:Ignorable="d" Height="100" Width="1367">
+
+    <Canvas Height="100"
+            Background="{DynamicResource PartBackGroundImBrush}">
+        
+        <navigationpanel1:NavigationPanel
+                Canvas.Right="0"/>
+
+        <Button x:Name="logoButton"
+                Style="{DynamicResource HeaderButtonStyle}"
+                Height="70"
+                Width="70"
+                Canvas.Left="20"
+                Canvas.Top="15"
+                Command="{Binding GoToAccountCommand}">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Image Name="image" Stretch="Fill" Source="{DynamicResource WhiteLogo}" />
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="image" Property="Source" Value="{DynamicResource BlueLogo}" />
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="image" Property="Source" Value="{DynamicResource WhiteLogo}" />
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+
+        <Label x:Name="logoLabel"  
+               Content="FISHY"
+               Canvas.Left="100"
+               Canvas.Top="20"
+               Width="150"
+               Height="60"
+               Style="{DynamicResource HeaderLabelStyle}"/>
+
+        <Button x:Name="searchButton"
+            Style="{DynamicResource HeaderButtonStyle}"
+            Canvas.Left="400" 
+            Command="{Binding SearchCommand}"
+            >
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Image Name="image" Stretch="Fill" Source="{DynamicResource Magnifier}" />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="image" Property="Source" Value="{DynamicResource BlueMagnifier}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="image" Property="Source" Value="{DynamicResource Magnifier}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <TextBox x:Name="searchTextBox" 
+                 Style="{StaticResource TextBoxStyle}"
+                 Width="350"
+                 Height="40"
+                 FontSize="25"
+                 Canvas.Left="450"
+                 Canvas.Top="30"
+                 Text="{Binding SearchText, Mode=TwoWay}"/>
+
+        <Button x:Name="newsButton"
+                Style="{DynamicResource HeaderButtonStyle}"
+                Canvas.Left="850" 
+                Command="{Binding Commands[OpenNewsPage]}">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Image Name="image" Stretch="Fill" Source="{DynamicResource News}" />
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="image" Property="Source" Value="{DynamicResource BlueNews}" />
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="image" Property="Source" Value="{DynamicResource News}" />
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Button x:Name="messageButton"
+                Style="{DynamicResource HeaderButtonStyle}"
+                Canvas.Left="920"
+                Command="{Binding Commands[OpenDialogPage]}">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Image Name="image" Stretch="Fill" Source="{DynamicResource Message}" />
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="image" Property="Source" Value="{DynamicResource BlueMessage}" />
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="image" Property="Source" Value="{DynamicResource Message}" />
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Button x:Name="friendsButton"
+                Style="{DynamicResource HeaderButtonStyle}"
+                Canvas.Left="990"
+                Command="{Binding Commands[OpenFriendPage]}">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Image Name="image" Stretch="Fill" Source="{DynamicResource Friends}" />
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="image" Property="Source" Value="{DynamicResource BlueFriends}" />
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="image" Property="Source" Value="{DynamicResource Friends}" />
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Button x:Name="AlbumsButton"
+                Style="{DynamicResource HeaderButtonStyle}"
+                Canvas.Left="1060"
+                Command="{Binding Commands[OpenAlbumPage]}">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Image Name="image" Stretch="Fill" Source="{DynamicResource Gallery}" />
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="image" Property="Source" Value="{DynamicResource BlueGallery}" />
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="image" Property="Source" Value="{DynamicResource Gallery}" />
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Button x:Name="fishButton"
+                Style="{DynamicResource HeaderButtonStyle}"
+                Canvas.Left="1130" 
+                Command="{Binding Commands[OpenFishPage]}">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Image Name="image" Stretch="Fill" Source="{DynamicResource Fish}" />
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="image" Property="Source" Value="{DynamicResource BlueFish}" />
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="image" Property="Source" Value="{DynamicResource Fish}" />
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Button  x:Name="shieldButton"
+                 Style="{DynamicResource HeaderButtonStyle}"
+                 Command="{Binding Commands[OpenInspectionPage]}"
+                 Canvas.Left="1200" >
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Image Name="image" Stretch="Fill" Source="{DynamicResource Shield}" />
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="image" Property="Source" Value="{DynamicResource BlueShield}" />
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="image" Property="Source" Value="{DynamicResource Shield}" />
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <Button x:Name="triangleButton"   
+                Style="{DynamicResource HeaderButtonStyle}"
+                Command="{Binding ExitCommand}"
+                Canvas.Left="1270" >
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Image Name="image" Stretch="Fill" Source="{DynamicResource Exit}" />
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="image" Property="Source" Value="{DynamicResource BlueExit}" />
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="image" Property="Source" Value="{DynamicResource Exit}" />
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+    </Canvas>
+</UserControl>

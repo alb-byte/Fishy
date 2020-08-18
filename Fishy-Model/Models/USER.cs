@@ -5,7 +5,7 @@ namespace Fishy_Model.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
-
+    [Serializable]
     [Table("USERS")]
     public partial class USER
     {

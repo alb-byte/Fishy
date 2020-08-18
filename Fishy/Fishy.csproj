@@ -61,16 +61,37 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModel\BaseVM.cs" />
-    <Compile Include="ViewModel\Commands\OpenAuthPageCommand.cs" />
-    <Compile Include="ViewModel\Commands\OpenRegPageCommand.cs" />
+    <Compile Include="ViewModel\Commands\OpenMainPagesCommand.cs" />
+    <Compile Include="ViewModel\Commands\OpenStartPagesCommand.cs" />
+    <Compile Include="ViewModel\Commands\RegistrationCommand.cs" />
+    <Compile Include="ViewModel\Interfaces\IChildVM.cs" />
     <Compile Include="ViewModel\Interfaces\IContainerVM.cs" />
-    <Compile Include="ViewModel\StartWindowVM\AuthVM.cs" />
-    <Compile Include="ViewModel\StartWindowVM\RegVM.cs" />
+    <Compile Include="ViewModel\MainWindowVM\Collections.cs" />
+    <Compile Include="ViewModel\MainWindowVM\CommandManager.cs" />
+    <Compile Include="ViewModel\MainWindowVM\MainVM.cs" />
     <Compile Include="ViewModel\StartWindowVM\StartVM.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MultiConverter.cs" />
+    <Compile Include="View\Pages\MainWindowPages\StandardPages\AlbumsPage.xaml.cs">
+      <DependentUpon>AlbumsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\MainWindowPages\StandardPages\InspectionsPage.xaml.cs">
+      <DependentUpon>InspectionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\MainWindowPages\StandardPages\DialogsPage.xaml.cs">
+      <DependentUpon>DialogsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\MainWindowPages\StandardPages\FishesPage.xaml.cs">
+      <DependentUpon>FishesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\MainWindowPages\StandardPages\FriendsPage.xaml.cs">
+      <DependentUpon>FriendsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\MainWindowPages\StandardPages\NewsPage.xaml.cs">
+      <DependentUpon>NewsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\StartWindowPages\AuthPage.xaml.cs">
       <DependentUpon>AuthPage.xaml</DependentUpon>
     </Compile>
@@ -79,6 +100,42 @@
     </Compile>
     <Compile Include="View\Pages\StartWindowPages\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Resources\UIControls\FishyControls\Album.xaml.cs">
+      <DependentUpon>Album.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Resources\UIControls\FishyControls\Comment.xaml.cs">
+      <DependentUpon>Comment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Resources\UIControls\FishyControls\Dialog.xaml.cs">
+      <DependentUpon>Dialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Resources\UIControls\FishyControls\EntryMessageField.xaml.cs">
+      <DependentUpon>EntryMessageField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Resources\UIControls\FishyControls\Fish.xaml.cs">
+      <DependentUpon>Fish.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Resources\UIControls\FishyControls\Friend.xaml.cs">
+      <DependentUpon>Friend.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Resources\UIControls\FishyControls\Header.xaml.cs">
+      <DependentUpon>Header.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Resources\UIControls\FishyControls\Message.xaml.cs">
+      <DependentUpon>Message.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Resources\UIControls\FishyControls\News.xaml.cs">
+      <DependentUpon>News.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Resources\UIControls\FishyControls\Photo.xaml.cs">
+      <DependentUpon>Photo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Resources\UIControls\FishyControls\StandardUser.xaml.cs">
+      <DependentUpon>StandardUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Resources\UIControls\FishyControls\Inspection.xaml.cs">
+      <DependentUpon>Inspection.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Resources\UIControls\NavigationPanel\NavigationPanel.xaml.cs">
       <DependentUpon>NavigationPanel.xaml</DependentUpon>
@@ -115,15 +172,36 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModel\MainWindowVM\" />
-    <Folder Include="View\Pages\MainWindowPages\" />
     <Folder Include="View\Resources\UIControls\CustomMessageBox\" />
-    <Folder Include="View\Resources\UIControls\FishyControls\" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\MainWindowPages\StandardPages\AlbumsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\MainWindowPages\StandardPages\InspectionsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\MainWindowPages\StandardPages\DialogsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\MainWindowPages\StandardPages\FishesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\MainWindowPages\StandardPages\FriendsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\MainWindowPages\StandardPages\NewsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\StartWindowPages\AuthPage.xaml">
       <SubType>Designer</SubType>
@@ -146,6 +224,54 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Resources\Styles\StartWindowStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Resources\UIControls\FishyControls\Album.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Resources\UIControls\FishyControls\Comment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Resources\UIControls\FishyControls\Dialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Resources\UIControls\FishyControls\EntryMessageField.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Resources\UIControls\FishyControls\Fish.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Resources\UIControls\FishyControls\Friend.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Resources\UIControls\FishyControls\Header.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Resources\UIControls\FishyControls\Message.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Resources\UIControls\FishyControls\News.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Resources\UIControls\FishyControls\Photo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Resources\UIControls\FishyControls\StandardUser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Resources\UIControls\FishyControls\Inspection.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -193,6 +319,12 @@
     <Resource Include="View\Resources\Files\person.jpg" />
     <Resource Include="View\Resources\Files\search.png" />
     <Resource Include="View\Resources\Files\three.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fishy-Model\Fishy-Model.csproj">
+      <Project>{bbeb8be9-f416-424c-a9d6-c24033b08c64}</Project>
+      <Name>Fishy-Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

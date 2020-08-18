@@ -13,7 +13,7 @@ namespace Server
     {
         static TcpListener tcpListener;
         List<Connection> clients = new List<Connection>(); // все подключения
-
+        BinaryFormatter formatter = new BinaryFormatter();
         protected internal void AddConnection(Connection clientObject)
         {
             clients.Add(clientObject);
@@ -66,6 +66,10 @@ namespace Server
             {
 
             }
+        }
+        protected internal void SendResponse(object response,Connection connection)
+        {
+            formatter.Serialize(connection.Stream, response);
         }
         // отключение всех клиентов
         protected internal void Disconnect()

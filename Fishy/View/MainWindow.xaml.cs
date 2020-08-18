@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Fishy.ViewModel.MainWindowVM;
+using System.Windows;
 
 namespace Fishy.View
 {
@@ -13,7 +14,7 @@ namespace Fishy.View
             WindowStyle = WindowParameters.WindowStyle;
             WindowStartupLocation = WindowParameters.WindowStartupLocation;
             AllowsTransparency = WindowParameters.AllowsTransparency;
-            //this.DataContext = new MainVM(user);
+            this.DataContext = new MainVM();
             //this.Closing += ((MainVM)this.DataContext).OnWindowClosing;
         }
     }

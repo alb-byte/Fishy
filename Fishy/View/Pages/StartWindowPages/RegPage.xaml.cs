@@ -6,10 +6,10 @@ namespace Fishy.View.Pages.StartWindowPages
 {
     public partial class RegPage : Page
     {
-        public RegPage(IContainerVM vm)
+        public RegPage(StartVM vm)
         {
             InitializeComponent();
-            DataContext = new RegVM(vm);
+            DataContext = vm;
         }
     }
 }

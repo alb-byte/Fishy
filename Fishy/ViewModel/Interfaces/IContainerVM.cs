@@ -1,9 +1,10 @@
-﻿using System.Windows.Controls;
+﻿using System.Collections.Generic;
+using System.Windows.Controls;
 
 namespace Fishy.ViewModel.Interfaces
 {
     public interface IContainerVM
     {
-        Page CurrentPage { get; set; }
+        Dictionary<string, Page> Pages { get; set; }
     }
 }
