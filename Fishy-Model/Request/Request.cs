@@ -75,7 +75,9 @@ namespace Fishy_Model.Request
             GetStateInspection,
             GetStateInspections,
             UpdateStateInspection,
-            DeleteStateInspection
+            DeleteStateInspection,
+
+            Connect
         }
 
     }

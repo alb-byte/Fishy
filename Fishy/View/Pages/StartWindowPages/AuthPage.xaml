@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Fishy.View.Pages.StartWindowPages" xmlns:navigationpanel="clr-namespace:Fishy.View.Resources.UIControls.NavigationPanel"
       mc:Ignorable="d" 
-       Width="{Binding  ElementName=StartWindow, Path=Width}"
+      Width="{Binding  ElementName=StartWindow, Path=Width}"
       Height="{Binding  ElementName=StartWindow, Path=Height}"
      >
 
@@ -73,7 +73,7 @@
                     Height = "40"
                     Canvas.Left = "190"
                     Canvas.Top = "410"
-                    Command="{Binding AuthorizationCommand}"
+                    Command="{Binding Commands[Authorization]}"
                     CommandParameter="{Binding ElementName=passBox}"
                     />
 
@@ -90,7 +90,7 @@
                     Content="Зарегистрироваться"
                     Width = "260"
                     Height = "40"
-                    Command="{Binding OpenRegPage}"
+                    Command="{Binding Commands[OpenRegPage]}"
                     Canvas.Left = "120"
                     Canvas.Top = "600"
                     />

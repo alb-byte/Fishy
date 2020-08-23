@@ -1,11 +1,12 @@
 ﻿using Fishy.ViewModel.MainWindowVM;
+using Fishy_Model.Models;
 using System.Windows;
 
 namespace Fishy.View
 {
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(User user)
         {
             InitializeComponent();
             this.Width = WindowParameters.Width;
@@ -14,7 +15,7 @@ namespace Fishy.View
             WindowStyle = WindowParameters.WindowStyle;
             WindowStartupLocation = WindowParameters.WindowStartupLocation;
             AllowsTransparency = WindowParameters.AllowsTransparency;
-            this.DataContext = new MainVM();
+            this.DataContext = new MainVM(user);
             //this.Closing += ((MainVM)this.DataContext).OnWindowClosing;
         }
     }

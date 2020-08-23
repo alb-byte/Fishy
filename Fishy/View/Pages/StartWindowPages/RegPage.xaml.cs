@@ -1,5 +1,4 @@
-﻿using Fishy.ViewModel.Interfaces;
-using Fishy.ViewModel.StartWindowVM;
+﻿using Fishy.ViewModel.StartWindowVM;
 using System.Windows.Controls;
 
 namespace Fishy.View.Pages.StartWindowPages

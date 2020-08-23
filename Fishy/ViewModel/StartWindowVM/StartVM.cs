@@ -1,34 +1,24 @@
-﻿using Fishy.View;
-using Fishy.View.Pages.StartWindowPages;
+﻿using Fishy.View.Pages.StartWindowPages;
 using Fishy.ViewModel.Commands;
-using Fishy.ViewModel.Interfaces;
-using System.Collections.Generic;
+using Fishy.ViewModel.Network;
+using Fishy_Model.Models;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Fishy.ViewModel.StartWindowVM
 {
-    public class StartVM : BaseVM,IContainerVM
+    public class StartVM : BaseVM
     {
         private Page currentPage;
-        private Dictionary<string,Page> pages;
+        private User user;
+        public SimpleNetworkTool Network { get; set; }
         public StartVM()
         {
-            pages = new Dictionary<string, Page>();
-            Pages.Add("Auth", new AuthPage(this));
-            Pages.Add("Reg", new RegPage(this));
-            Pages.Add("Start", new StartPage(this));
+            user = new User();
+            Network = new SimpleNetworkTool();
+            InitializationPages();
+            InitializationCommands();
             CurrentPage = Pages["Start"];
-
-            OpenAuthPage = new OpenStartPagesCommand(this,Pages["Auth"]);
-            OpenRegPage = new OpenStartPagesCommand(this,Pages["Reg"]);
-            MainWindow window = new MainWindow();
-            window.Show();
         }
-        public ICommand OpenAuthPage { get; }
-        public ICommand OpenRegPage { get; }
-        public ICommand Authorization { get; }
-        public ICommand Registration { get; }
         public Page CurrentPage
         {
             get
@@ -41,18 +31,33 @@ namespace Fishy.ViewModel.StartWindowVM
                 OnPropertyChanged("CurrentPage");
             }
         }
-        public Dictionary<string, Page> Pages
+        public User User
         {
             get
             {
-                return pages;
+                return user;
             }
             set
             {
-                this.pages = value;
-                OnPropertyChanged("Pages");
+                user = value;
+                OnPropertyChanged("User");
             }
-
         }
+
+        protected override void InitializationCommands()
+        {
+            Commands.Add("OpenAuthPage", new OpenStartPagesCommand(this, Pages["Auth"]));
+            Commands.Add("OpenRegPage", new OpenStartPagesCommand(this, Pages["Reg"]));
+            Commands.Add("OpenStartPage", new OpenStartPagesCommand(this,Pages["Start"]));
+            Commands.Add("Registration", new RegistrationCommand(this));
+            Commands.Add("Authorization", new AuthorizationCommand(this));
+        }
+        protected override void InitializationPages()
+        {
+            Pages.Add("Auth", new AuthPage(this));
+            Pages.Add("Reg", new RegPage(this));
+            Pages.Add("Start", new StartPage(this));
+        }
+
     }
 }

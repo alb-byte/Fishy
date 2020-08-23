@@ -1,31 +1,94 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+
 namespace Fishy_Model.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
-    [Table("ALBUMS")]
-    public partial class ALBUM
+    [Serializable]
+    public class Album :BaseModel, IDataErrorInfo
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ALBUM()
+        private int id;
+        private string name;
+        private int owner_id;
+        public Album(int id, int owner_id, string name)
         {
-            PHOTOS = new HashSet<PHOTO>();
+            this.Id = id;
+            this.Owner = owner_id;
+            this.Name = name;
+        }
+        public Album(Album a)
+        {
+            this.Owner = a.Owner;
+            this.Name = a.Name;
+        }
+        public Album()
+        {
+            this.Name = String.Empty;
+        }
+        public int Id
+        {
+            get { return id; }
+            set
+            {
+                id = value;
+                OnPropertyChanged("Id");
+            }
+        }
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                name = value;
+                OnPropertyChanged("Name");
+            }
+        }
+        public int Owner
+        {
+            get { return owner_id; }
+            set
+            {
+                owner_id = value;
+                OnPropertyChanged("Owner");
+            }
         }
 
-        public int ID { get; set; }
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = String.Empty;
+                switch (columnName)
+                {
+                    case "Id":
+                        {
+                            if (Id < 0)
+                            {
+                                error = "Идентификатор альбома не может быть меньше 0";
+                            }
+                            break;
+                        }
+                    case "Name":
+                        {
+                            if (Name.Length > 15)
+                            {
+                                error = "Превышена длинна имени альбома";
+                            }
+                            break;
+                        }
+                    case "Owner":
+                        {
+                            if (Owner < 0)
+                            {
+                                error = "Идентификатор владельца альбома не может быть меньше 0";
+                            }
+                            break;
+                        }
+                }
+                return error;
+            }
+        }
+        public string Error => throw new NotImplementedException();
 
-        [Required]
-        [StringLength(30)]
-        public string NAME { get; set; }
-
-        public int? OWNER { get; set; }
-
-        public virtual USER USER { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PHOTO> PHOTOS { get; set; }
     }
 }

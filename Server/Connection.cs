@@ -2,6 +2,7 @@
 using Fishy_Model.Request;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -14,7 +15,6 @@ namespace Server
     {
         protected internal int Id { get; private set; }
         protected internal NetworkStream Stream { get; private set; }
-        private State state;
         private TcpClient client;
         private Server server;
         private BinaryFormatter BinaryFormatter;
@@ -26,7 +26,6 @@ namespace Server
             server = serverObject;
             requestHandler = new RequestHandler();
             BinaryFormatter = new BinaryFormatter();
-            state = State.NOTAUTHORIZED;
             serverObject.AddConnection(this);
         }
 
@@ -35,26 +34,37 @@ namespace Server
             try
             {
                 Stream = client.GetStream();
-                Response response = null;
+                Response response = new Response();
                 while (true)
                 {
                     try
                     {
                         Request request = (Request)BinaryFormatter.Deserialize(Stream);
-                        response = requestHandler.Processing(request);
-                        if(request.Type == Request.RequestType.GetUser && state == State.NOTAUTHORIZED && 
-                            response.State != Response.ResponseState.IsNull )
+                        if(request.Type == Request.RequestType.Connect )
                         {
-                            state = State.AUTHORIZED;
-                            this.Id = ((USER)response.Body).ID;
+                            this.Id = ((User)request.Body).Id;
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.WriteLine($"{Id}: подключился");
+                            Console.ResetColor();
+                            response.State = Response.ResponseState.NotNull;
+                        }
+                        else
+                        {
+                            response = requestHandler.Processing(request);
                         }
                         server.SendResponse(response,this);
+                    }
+                    catch(DbUpdateException ex)
+                    {
+                        server.SendResponse(new Response(),this);
                     }
                     catch
                     {
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.WriteLine($"{Id}: отключился");
                         Console.ResetColor();
+                        server.RemoveConnection(this.Id);
+                        Close();
                         break;
                     }
                 }
@@ -78,10 +88,6 @@ namespace Server
                 client.Close();
         }
 
-        private enum State
-        {
-            AUTHORIZED,
-            NOTAUTHORIZED
-        }
+
     }
 }

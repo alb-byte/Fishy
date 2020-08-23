@@ -37,9 +37,11 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -48,18 +50,29 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\ALBUM.cs" />
-    <Compile Include="Models\COMMENT.cs" />
-    <Compile Include="Models\DIALOG.cs" />
-    <Compile Include="Models\FISH.cs" />
-    <Compile Include="Models\FRIEND.cs" />
-    <Compile Include="Models\MESSAGE.cs" />
-    <Compile Include="Models\NEWS.cs" />
-    <Compile Include="Models\PHOTO.cs" />
-    <Compile Include="Models\STATE_INSPECTION.cs" />
-    <Compile Include="Models\USER.cs" />
+    <Compile Include="Entities\ALBUM.cs" />
+    <Compile Include="Models\Album.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Entities\COMMENT.cs" />
+    <Compile Include="Entities\DIALOG.cs" />
+    <Compile Include="Entities\FISH.cs" />
+    <Compile Include="Entities\FRIEND.cs" />
+    <Compile Include="Entities\MESSAGE.cs" />
+    <Compile Include="Entities\NEWS.cs" />
+    <Compile Include="Entities\PHOTO.cs" />
+    <Compile Include="Entities\STATE_INSPECTION.cs" />
+    <Compile Include="Entities\USER.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Dialog.cs" />
+    <Compile Include="Models\Fish.cs" />
+    <Compile Include="Models\Inspection.cs" />
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\News.cs" />
+    <Compile Include="Models\Photo.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request\Request.cs" />
     <Compile Include="Request\Response.cs" />

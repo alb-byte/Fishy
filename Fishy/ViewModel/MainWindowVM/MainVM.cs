@@ -1,31 +1,20 @@
 ﻿using Fishy.ViewModel.Commands;
-using Fishy.ViewModel.Interfaces;
+using Fishy.ViewModel.Network;
 using FISHY.View.Pages.MainWindowPages.StandardPages;
 using Fishy_Model.Models;
+using Fishy_Model.Request;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Fishy.ViewModel.MainWindowVM
 {
-    public class MainVM : BaseVM, IContainerVM
+    public class MainVM : BaseVM
     {
         private Page leftPage;
         private Page rightPage;
-        private Dictionary<string, Page> pages;
         private Collections collections;
-        private Dictionary<string,ICommand> commands;
-        private void CreatePages()
-        {
-            Pages.Add("Dialogs", new DialogsPage(this));
-            Pages.Add("News", new NewsPage(this));
-            Pages.Add("Friends", new FriendsPage(this));
-            Pages.Add("Albums", new AlbumsPage(this));
-            Pages.Add("Fishes", new FishesPage(this));
-            Pages.Add("Inspections", new InspectionsPage(this));
-        }
+        private User user;
+        private bool elementsEnabled = false;
         private void AddObjects()
         {
             NEWS n = new NEWS
@@ -64,7 +53,17 @@ namespace Fishy.ViewModel.MainWindowVM
             };
             Collections.Friends.Add(u);
         }
-        private void AddCommands()
+        protected override void InitializationPages()
+        {
+            Pages.Add("Dialogs", new DialogsPage(this));
+            Pages.Add("News", new NewsPage(this));
+            Pages.Add("Friends", new FriendsPage(this));
+            Pages.Add("Albums", new AlbumsPage(this));
+            Pages.Add("Fishes", new FishesPage(this));
+            Pages.Add("Inspections", new InspectionsPage(this));
+            Pages.Add("MyAccount", new MyAccountPage(this));
+        }
+        protected override void InitializationCommands()
         {
             Commands.Add("OpenFishPage", new OpenMainPagesCommand(this, this.Pages["Fishes"], OpenMainPagesCommand.TypePage.RIGHT));
             Commands.Add("OpenNewsPage", new OpenMainPagesCommand(this, this.Pages["News"], OpenMainPagesCommand.TypePage.RIGHT));
@@ -72,19 +71,27 @@ namespace Fishy.ViewModel.MainWindowVM
             Commands.Add("OpenAlbumPage", new OpenMainPagesCommand(this, this.Pages["Albums"], OpenMainPagesCommand.TypePage.RIGHT));
             Commands.Add("OpenFriendPage", new OpenMainPagesCommand(this, this.Pages["Friends"], OpenMainPagesCommand.TypePage.RIGHT));
             Commands.Add("OpenInspectionPage", new OpenMainPagesCommand(this, this.Pages["Inspections"], OpenMainPagesCommand.TypePage.RIGHT));
+            Commands.Add("AddPhoto", new AddPhotoCommand(this));
+            Commands.Add("EditInfo", new EditInfoCommand(this));
         }
         public MainVM()
         {
-            commands = new Dictionary<string, ICommand>();
-            Commands.Add("Scroll", new RegistrationCommand());
 
-            pages = new Dictionary<string, Page>();
-            CreatePages();
+        }
+        public MainVM(User user)
+        {
+            User = user;
+            Commands.Add("Scroll", new ClearCommand());
+            LastRequest = new Request(Request.RequestType.Connect, null);
+            InitializationPages();
 
             collections = new Collections();
+            Network = new DifficultNetworkTool();
+            Network.Connect(this,user);
             AddObjects();
             RightPage = Pages["News"];
-            AddCommands();
+            LeftPage = Pages["MyAccount"];
+            InitializationCommands();
 
         }
         public Page LeftPage
@@ -111,19 +118,6 @@ namespace Fishy.ViewModel.MainWindowVM
                 OnPropertyChanged("RightPage");
             }
         }
-        public Dictionary<string, Page> Pages
-        {
-            get
-            {
-                return pages;
-            }
-            set
-            {
-                this.pages = value;
-                OnPropertyChanged("Pages");
-            }
-
-        }
         public Collections Collections
         {
             get
@@ -136,18 +130,31 @@ namespace Fishy.ViewModel.MainWindowVM
                 OnPropertyChanged("Collections");
             }
         }
-        public Dictionary<string,ICommand> Commands
+        public User User
         {
             get
             {
-                return commands;
+                return user;
             }
             set
             {
-                commands = value;
-                OnPropertyChanged("Commands");
+                user = value;
+                OnPropertyChanged("User");
             }
         }
-
+        public Request LastRequest { get; set; }
+        public DifficultNetworkTool Network { get; set; }
+        public bool ElementsEnabled
+        {
+            get
+            {
+                return elementsEnabled;
+            }
+            set
+            {
+                elementsEnabled = value;
+                OnPropertyChanged("ElementsEnabled");
+            }
+        }
     }
 }

@@ -1,31 +1,54 @@
+﻿using System;
+using System.Windows.Media.Imaging;
+
 namespace Fishy_Model.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
-    [Table("PHOTOS")]
-    public partial class PHOTO
+    [Serializable]
+    public class Photo :BaseModel
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PHOTO()
+        private int id;
+        private int album_id;
+        private BitmapImage image;
+        public Photo(int id, int album_id, BitmapImage bmp)
         {
-            COMMENTS = new HashSet<COMMENT>();
+            this.Id = id;
+            this.Album_Id = album_id;
+            this.Image = bmp;
         }
-
-        public int ID { get; set; }
-
-        [Required]
-        [StringLength(60)]
-        public string PATH { get; set; }
-
-        public int? ALBUM { get; set; }
-
-        public virtual ALBUM ALBUM1 { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<COMMENT> COMMENTS { get; set; }
+        public Photo()
+        {
+        }
+        public int Id
+        {
+            get { return id; }
+            set
+            {
+                id = value;
+                OnPropertyChanged("Id");
+            }
+        }
+        public int Album_Id
+        {
+            get { return album_id; }
+            set
+            {
+                album_id = value;
+                OnPropertyChanged("Album_Id");
+            }
+        }
+        public BitmapImage Image
+        {
+            get { return image; }
+            set
+            {
+                image = value;
+                OnPropertyChanged("Image");
+            }
+        }
+        public override string ToString()
+        {
+            return $"Id: {this.Id}\n" +
+                $"Album_Id: {this.Album_Id}\n";
+        }
     }
 }

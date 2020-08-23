@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -14,6 +15,8 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,7 +38,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -61,14 +71,20 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModel\BaseVM.cs" />
+    <Compile Include="ViewModel\Commands\AddPhotoCommand.cs" />
+    <Compile Include="ViewModel\Commands\AuthorizationCommand.cs" />
+    <Compile Include="ViewModel\Commands\ClearCommand.cs" />
+    <Compile Include="ViewModel\Commands\EditInfoCommand.cs" />
     <Compile Include="ViewModel\Commands\OpenMainPagesCommand.cs" />
     <Compile Include="ViewModel\Commands\OpenStartPagesCommand.cs" />
     <Compile Include="ViewModel\Commands\RegistrationCommand.cs" />
-    <Compile Include="ViewModel\Interfaces\IChildVM.cs" />
-    <Compile Include="ViewModel\Interfaces\IContainerVM.cs" />
+    <Compile Include="ViewModel\Encryption.cs" />
     <Compile Include="ViewModel\MainWindowVM\Collections.cs" />
-    <Compile Include="ViewModel\MainWindowVM\CommandManager.cs" />
     <Compile Include="ViewModel\MainWindowVM\MainVM.cs" />
+    <Compile Include="ViewModel\Network\DifficultNetworkTool.cs" />
+    <Compile Include="ViewModel\Network\NetworkTools.cs" />
+    <Compile Include="ViewModel\Network\ResponseHandler.cs" />
+    <Compile Include="ViewModel\Network\SimpleNetworkTool.cs" />
     <Compile Include="ViewModel\StartWindowVM\StartVM.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -92,6 +108,9 @@
     <Compile Include="View\Pages\MainWindowPages\StandardPages\NewsPage.xaml.cs">
       <DependentUpon>NewsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\MainWindowPages\StandardPages\MyAccountPage.xaml.cs">
+      <DependentUpon>MyAccountPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\StartWindowPages\AuthPage.xaml.cs">
       <DependentUpon>AuthPage.xaml</DependentUpon>
     </Compile>
@@ -100,6 +119,9 @@
     </Compile>
     <Compile Include="View\Pages\StartWindowPages\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Resources\UIControls\CustomMessageBox\MyMessageBox.xaml.cs">
+      <DependentUpon>MyMessageBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Resources\UIControls\FishyControls\Album.xaml.cs">
       <DependentUpon>Album.xaml</DependentUpon>
@@ -163,6 +185,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -172,7 +195,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="View\Resources\UIControls\CustomMessageBox\" />
+    <Folder Include="ViewModel\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="View\MainWindow.xaml">
@@ -203,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\Pages\MainWindowPages\StandardPages\MyAccountPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\Pages\StartWindowPages\AuthPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -224,6 +251,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Resources\Styles\StartWindowStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Resources\UIControls\CustomMessageBox\MyMessageBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -327,4 +358,12 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>

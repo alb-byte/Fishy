@@ -133,7 +133,7 @@
                     Content="Зарегестрироваться"
                     Width = "300"
                     Height = "40"
-                    Command="{Binding RegistrationCommand}"
+                    Command="{Binding Commands[Registration]}"
                     Canvas.Left = "100"
                     Canvas.Top = "470"
                     >
@@ -159,7 +159,7 @@
                     Height = "40"
                     Canvas.Left = "190"
                     Canvas.Top = "600"
-                    Command="{Binding OpenAuthPage}"
+                    Command="{Binding Commands[OpenAuthPage]}"
                     />
         </Canvas>
         <Canvas Background="Transparent" Grid.Column="1" >

@@ -35,7 +35,7 @@
                     Height="40"
                     Canvas.Bottom="80"
                     Canvas.Right="320"
-                    Command="{Binding OpenAuthPage}"
+                    Command="{Binding Commands[OpenAuthPage]}"
                     />
 
             <Button x:Name="signUpButton"  
@@ -45,7 +45,7 @@
                     Height="40" 
                     Canvas.Bottom="80"
                     Canvas.Right="90"
-                    Command="{Binding OpenRegPage}"
+                    Command="{Binding Commands[OpenRegPage]}"
                     />
         </Canvas>
     </Grid>

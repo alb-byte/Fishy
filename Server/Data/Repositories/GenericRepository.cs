@@ -13,6 +13,7 @@ namespace Server.Data.Repositories
         public GenericRepository(DbContext context)
         {
             this.context = context;
+            this.context.Configuration.ProxyCreationEnabled = false;
             dbSet = context.Set<TEntity>();
         }
 
@@ -27,7 +28,7 @@ namespace Server.Data.Repositories
         }
         public TEntity GetEntity(Func<TEntity, bool> predicate)
         {
-            return dbSet.AsNoTracking().Where(predicate).FirstOrDefault();
+            return dbSet.Where(predicate).FirstOrDefault();
         }
         public TEntity FindById(int id)
         {
