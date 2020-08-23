@@ -71,14 +71,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModel\BaseVM.cs" />
+    <Compile Include="ViewModel\Commands\AddNewsCommand.cs" />
     <Compile Include="ViewModel\Commands\AddPhotoCommand.cs" />
-    <Compile Include="ViewModel\Commands\AuthorizationCommand.cs" />
+    <Compile Include="ViewModel\Commands\StartWindow\AuthorizationCommand.cs" />
     <Compile Include="ViewModel\Commands\ClearCommand.cs" />
+    <Compile Include="ViewModel\Commands\DisconnectCommand.cs" />
     <Compile Include="ViewModel\Commands\EditInfoCommand.cs" />
     <Compile Include="ViewModel\Commands\OpenMainPagesCommand.cs" />
-    <Compile Include="ViewModel\Commands\OpenStartPagesCommand.cs" />
-    <Compile Include="ViewModel\Commands\RegistrationCommand.cs" />
+    <Compile Include="ViewModel\Commands\StartWindow\OpenStartPagesCommand.cs" />
+    <Compile Include="ViewModel\Commands\OpenStartWindowCommand.cs" />
+    <Compile Include="ViewModel\Commands\StartWindow\RegistrationCommand.cs" />
     <Compile Include="ViewModel\Encryption.cs" />
+    <Compile Include="ViewModel\MainWindowVM\AdminVM.cs" />
     <Compile Include="ViewModel\MainWindowVM\Collections.cs" />
     <Compile Include="ViewModel\MainWindowVM\MainVM.cs" />
     <Compile Include="ViewModel\Network\DifficultNetworkTool.cs" />
@@ -90,6 +94,12 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MultiConverter.cs" />
+    <Compile Include="View\Pages\MainWindowPages\AdminPages\AdminNewsConstructPage.xaml.cs">
+      <DependentUpon>AdminNewsConstructPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\MainWindowPages\AdminPages\AdminNewsPage.xaml.cs">
+      <DependentUpon>AdminNewsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\MainWindowPages\StandardPages\AlbumsPage.xaml.cs">
       <DependentUpon>AlbumsPage.xaml</DependentUpon>
     </Compile>
@@ -201,6 +211,14 @@
     <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\MainWindowPages\AdminPages\AdminNewsConstructPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\MainWindowPages\AdminPages\AdminNewsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\MainWindowPages\StandardPages\AlbumsPage.xaml">
       <Generator>MSBuild:Compile</Generator>

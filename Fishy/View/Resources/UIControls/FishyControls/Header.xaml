@@ -18,7 +18,7 @@
                 Width="70"
                 Canvas.Left="20"
                 Canvas.Top="15"
-                Command="{Binding GoToAccountCommand}">
+                Command="{Binding Commands[OpenMyAccountPage]}">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Image Name="image" Stretch="Fill" Source="{DynamicResource WhiteLogo}" />
@@ -208,7 +208,7 @@
 
         <Button x:Name="triangleButton"   
                 Style="{DynamicResource HeaderButtonStyle}"
-                Command="{Binding ExitCommand}"
+                Command="{Binding Commands[OpenStartPage]}"
                 Canvas.Left="1270" >
             <Button.Template>
                 <ControlTemplate TargetType="Button">

@@ -13,6 +13,7 @@ namespace Fishy.ViewModel.MainWindowVM
         private Page leftPage;
         private Page rightPage;
         private Collections collections;
+        private AdminVM admin;
         private User user;
         private bool elementsEnabled = false;
         private void AddObjects()
@@ -62,6 +63,11 @@ namespace Fishy.ViewModel.MainWindowVM
             Pages.Add("Fishes", new FishesPage(this));
             Pages.Add("Inspections", new InspectionsPage(this));
             Pages.Add("MyAccount", new MyAccountPage(this));
+
+            if (User.Administrator)
+            {
+            }
+
         }
         protected override void InitializationCommands()
         {
@@ -71,8 +77,16 @@ namespace Fishy.ViewModel.MainWindowVM
             Commands.Add("OpenAlbumPage", new OpenMainPagesCommand(this, this.Pages["Albums"], OpenMainPagesCommand.TypePage.RIGHT));
             Commands.Add("OpenFriendPage", new OpenMainPagesCommand(this, this.Pages["Friends"], OpenMainPagesCommand.TypePage.RIGHT));
             Commands.Add("OpenInspectionPage", new OpenMainPagesCommand(this, this.Pages["Inspections"], OpenMainPagesCommand.TypePage.RIGHT));
+            Commands.Add("OpenMyAccountPage", new OpenMainPagesCommand(this, this.Pages["MyAccount"], OpenMainPagesCommand.TypePage.LEFT));
+            Commands.Add("OpenStartPage", new OpenStartWindowCommand(this));
+
             Commands.Add("AddPhoto", new AddPhotoCommand(this));
             Commands.Add("EditInfo", new EditInfoCommand(this));
+            Commands.Add("Disconnect", new DisconnectCommand(this));
+            if (User.Administrator)
+            {
+
+            }
         }
         public MainVM()
         {
@@ -84,12 +98,11 @@ namespace Fishy.ViewModel.MainWindowVM
             Commands.Add("Scroll", new ClearCommand());
             LastRequest = new Request(Request.RequestType.Connect, null);
             InitializationPages();
-
             collections = new Collections();
             Network = new DifficultNetworkTool();
             Network.Connect(this,user);
             AddObjects();
-            RightPage = Pages["News"];
+            RightPage = Pages["AdminNews"];
             LeftPage = Pages["MyAccount"];
             InitializationCommands();
 
@@ -128,6 +141,18 @@ namespace Fishy.ViewModel.MainWindowVM
             {
                 collections = value;
                 OnPropertyChanged("Collections");
+            }
+        }
+        public AdminVM Admin
+        {
+            get
+            {
+                return admin;
+            }
+            set
+            {
+                admin = value;
+                OnPropertyChanged("Admin");
             }
         }
         public User User

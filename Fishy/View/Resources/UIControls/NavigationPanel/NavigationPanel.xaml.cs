@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Fishy.ViewModel.MainWindowVM;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -17,6 +18,7 @@ namespace Fishy.View.Resources.UIControls.NavigationPanel
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             Window parentWindow = Window.GetWindow(this);
+            ((MainVM)parentWindow.DataContext).Commands["Disconnect"].Execute(this);
             parentWindow.Close();
         }
 

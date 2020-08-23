@@ -10,6 +10,7 @@ namespace Fishy_Model.Models
         private int id;
         private string title;
         private string text;
+        private string time;
         private BitmapImage image;
         public News(int id, string title, string text, BitmapImage img)
         {
@@ -22,6 +23,7 @@ namespace Fishy_Model.Models
         {
             this.Title = String.Empty;
             this.Text = String.Empty;
+            this.Time = String.Empty;
         }
         public News(News news)
         {
@@ -54,6 +56,15 @@ namespace Fishy_Model.Models
             {
                 text = value;
                 OnPropertyChanged("Text");
+            }
+        }
+        public string Time
+        {
+            get { return time; }
+            set
+            {
+                time = value;
+                OnPropertyChanged("Time");
             }
         }
         public BitmapImage Image
